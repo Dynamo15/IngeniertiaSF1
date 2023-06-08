@@ -24,8 +24,16 @@ body {
   background: #49794e69;
   /*background: #666b6b;*/
 }
+
 body {
   margin: 0;
+}
+
+.logo1 {
+  position: relative;
+  right: 750px;
+
+
 }
 
 ul {
@@ -145,7 +153,7 @@ header {
   font-weight: 300;
   color: black;
   margin-bottom: 40px;
-font-size: 25px;
+  font-size: 25px;
 }
 
 .contenedor-servicio {
@@ -245,22 +253,28 @@ font-size: 25px;
 
 
 
+
+
 a {
   display: inline-block;
   width: 50px;
   text-decoration: none;
 }
-nav, scroll-container {
+
+nav,
+scroll-container {
   display: block;
   margin: 0 auto;
   text-align: center;
 }
+
 nav {
   width: 100%;
   padding: 30px;
   text-align: right;
   /* border: 1px solid black; */
 }
+
 scroll-container {
   display: block;
   width: 100%;
@@ -268,6 +282,7 @@ scroll-container {
   overflow-y: scroll;
   scroll-behavior: smooth;
 }
+
 scroll-page {
   display: flex;
   align-items: center;
@@ -275,5 +290,3 @@ scroll-page {
   height: 100%;
   font-size: 5em;
 }
-
-

